@@ -13,10 +13,13 @@ This is a node-based command-line application that allows the user to input info
 * [Questions](#questions)
 
 ## Installation
-1. Run npm install.
+1. Run npm install
 
 ## Usage
-Run using: 
+1. To run a specific test: 
+```
+npm test -- -t <test-string-in-double-quotes>
+```
 See walkthrough video here: 
 ![Application screenshot](images/template-engine.png)
 
