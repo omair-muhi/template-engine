@@ -98,7 +98,17 @@ function addEmployee() {
                 // make a recursive call to add more employees
                 addEmployee();
             } else {
-                employees.forEach(item => item.printInfo());
+                // employees.forEach(item => item.printInfo()); // for debug only
+                let htmlContent = render(employees);
+                // create directory if it does not exist
+                if (!fs.existsSync(OUTPUT_DIR)) {
+                    fs.mkdirSync(OUTPUT_DIR);
+                }
+                // generate team.html
+                fs.writeFile(outputPath, htmlContent, (err) => {
+                    if (err !== null)
+                        console.log(err);
+                });
             }
         });
 }
