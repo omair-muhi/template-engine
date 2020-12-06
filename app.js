@@ -44,7 +44,7 @@ function addEmployee() {
                 name: 'name',
             },
             {
-                type: 'input',
+                type: 'number',
                 message: 'Enter employee id:',
                 name: 'id',
             },
@@ -59,7 +59,7 @@ function addEmployee() {
                 name: 'role',
             },
             {
-                type: 'input',
+                type: 'number',
                 message: 'Enter office number:',
                 name: 'officeNumber',
                 when: (answers) => answers.role == 'Manager',
@@ -76,7 +76,11 @@ function addEmployee() {
                 name: 'school',
                 when: (answers) => answers.role == 'Intern',
             },
-
+            {
+                type: 'confirm',
+                message: 'Do you want to add another employee?',
+                name: 'addMore',
+            },
         ])
         .then((response) => {
             switch (response.role) {
@@ -90,7 +94,12 @@ function addEmployee() {
                     employees.push(new Manager(response.name, response.id, response.email, response.officeNumber));
                     break;
             }
-            employees.forEach(item => item.printInfo());
+            if (response.addMore) {
+                // make a recursive call to add more employees
+                addEmployee();
+            } else {
+                employees.forEach(item => item.printInfo());
+            }
         });
 }
 
