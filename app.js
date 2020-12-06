@@ -33,3 +33,65 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+let employees = []; // array of employees to render
+
+function addEmployee() {
+    inquirer
+        .prompt([{
+                type: 'input',
+                message: 'Enter employee name:',
+                name: 'name',
+            },
+            {
+                type: 'input',
+                message: 'Enter employee id:',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'Enter employee email:',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'Enter employee role:',
+                name: 'role',
+            },
+            {
+                type: 'input',
+                message: 'Enter office number:',
+                name: 'officeNumber',
+                when: (answers) => answers.role == 'Manager',
+            },
+            {
+                type: 'input',
+                message: 'Enter github username:',
+                name: 'github',
+                when: (answers) => answers.role == 'Engineer',
+            },
+            {
+                type: 'input',
+                message: 'Enter school name:',
+                name: 'school',
+                when: (answers) => answers.role == 'Intern',
+            },
+
+        ])
+        .then((response) => {
+            switch (response.role) {
+                case 'Intern':
+                    employees.push(new Intern(response.name, response.id, response.email, response.school));
+                    break;
+                case 'Engineer':
+                    employees.push(new Engineer(response.name, response.id, response.email, response.github));
+                    break;
+                case 'Manager':
+                    employees.push(new Manager(response.name, response.id, response.email, response.officeNumber));
+                    break;
+            }
+            employees.forEach(item => item.printInfo());
+        });
+}
+
+addEmployee();
