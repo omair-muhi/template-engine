@@ -19,11 +19,7 @@ npm install
 ```
 
 ## Usage
-1. To run a specific test: 
-```
-npm test -- -t <test-string-in-double-quotes>
-```
-2. To run the app:
+1. To run the app:
 ```
 node app.js
 ```
@@ -35,6 +31,14 @@ See walkthrough video here: https://drive.google.com/file/d/1j4fDwtJLqqaelPwGliW
 Not Applicable
 
 ## Tests
+1. To run all tests:
+```
+npm run test
+```
+2. To run a specific test: 
+```
+npm test -- -t <test-string-in-double-quotes>
+```
 
 ## License
 This application is covered under the MIT license.
