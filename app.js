@@ -42,39 +42,88 @@ function addEmployee() {
                 type: 'input',
                 message: 'Enter employee name:',
                 name: 'name',
+                validate: (input, answers) => {
+                    if (/^[A-za-z]+$/.test(input)) {
+                        return true;
+                    } else {
+                        console.log("\nPlease enter alphabetic characters only");
+                        return false;
+                    }
+                }
             },
             {
-                type: 'number',
+                type: 'input',
                 message: 'Enter employee id:',
                 name: 'id',
+                validate: (input, answers) => {
+                    if (/^[0-9]+$/.test(input)) {
+                        return true;
+                    } else {
+                        console.log("\nPlease enter numeric characters only");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'input',
                 message: 'Enter employee email:',
                 name: 'email',
+                validate: (input, answers) => {
+                    if (/.@./.test(input)) {
+                        return true;
+                    } else {
+                        console.log("\nPlease enter a valid e-mail address");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'rawlist',
+                message: 'Enter employee role:',
+                name: 'role',
+                choices: ['Intern', 'Engineer', 'Manager']
             },
             {
                 type: 'input',
-                message: 'Enter employee role:',
-                name: 'role',
-            },
-            {
-                type: 'number',
                 message: 'Enter office number:',
                 name: 'officeNumber',
                 when: (answers) => answers.role == 'Manager',
+                validate: (input, answers) => {
+                    if (/^[0-9]+$/.test(input)) {
+                        return true;
+                    } else {
+                        console.log("\nPlease enter numeric characters only");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'input',
                 message: 'Enter github username:',
                 name: 'github',
                 when: (answers) => answers.role == 'Engineer',
+                validate: (input, answers) => {
+                    if (/^[a-zA-Z0-9]+$/.test(input)) {
+                        return true;
+                    } else {
+                        console.log("\nPlease enter alpha-numeric characters only");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'input',
                 message: 'Enter school name:',
                 name: 'school',
                 when: (answers) => answers.role == 'Intern',
+                validate: (input, answers) => {
+                    if (/^[A-z\sa-z]+$/.test(input)) {
+                        return true;
+                    } else {
+                        console.log("\nPlease enter alphabetic characters only");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'confirm',
