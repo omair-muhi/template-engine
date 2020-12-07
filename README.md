@@ -27,7 +27,8 @@ npm test -- -t <test-string-in-double-quotes>
 ```
 node app.js
 ```
-See walkthrough video here: 
+See walkthrough video here: https://drive.google.com/file/d/1j4fDwtJLqqaelPwGliWCOSytoqpkA3VZ/view
+
 ![Application screenshot](images/template-engine.png)
 
 ## Contributing
