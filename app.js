@@ -43,11 +43,11 @@ function addEmployee() {
                 message: 'Enter employee name:',
                 name: 'name',
                 validate: (input, answers) => {
-                    if (/^[A-za-z]+$/.test(input)) {
-                        return true;
-                    } else {
+                    if (/^[0-9]+$/.test(input)) {
                         console.log("\nPlease enter alphabetic characters only");
                         return false;
+                    } else {
+                        return true;
                     }
                 }
             },
@@ -102,14 +102,6 @@ function addEmployee() {
                 message: 'Enter github username:',
                 name: 'github',
                 when: (answers) => answers.role == 'Engineer',
-                validate: (input, answers) => {
-                    if (/^[a-zA-Z0-9]+$/.test(input)) {
-                        return true;
-                    } else {
-                        console.log("\nPlease enter alpha-numeric characters only");
-                        return false;
-                    }
-                }
             },
             {
                 type: 'input',
@@ -117,11 +109,11 @@ function addEmployee() {
                 name: 'school',
                 when: (answers) => answers.role == 'Intern',
                 validate: (input, answers) => {
-                    if (/^[A-z\sa-z]+$/.test(input)) {
-                        return true;
-                    } else {
+                    if (/^[0-9]+$/.test(input)) {
                         console.log("\nPlease enter alphabetic characters only");
                         return false;
+                    } else {
+                        return true;
                     }
                 }
             },
